@@ -27,7 +27,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from __future__ import annotations
+
 
 from datetime import datetime
 from typing import Dict, Any
@@ -58,7 +58,7 @@ class PowerReport(Report):
         return 'PowerReport(%s, %s, %s, %f, %s)' % (self.timestamp, self.sensor, self.target, self.power, self.metadata)
 
     @staticmethod
-    def deserialize(data: Dict) -> PowerReport:
+    def deserialize(data: Dict):
         """
         Generate a report using the given data.
         :param Dict data: Dictionary containing the report attributes

@@ -123,7 +123,7 @@ class CsvIterDB(IterDB):
         except StopIteration:
             return None
 
-    def __next__(self) -> Report:
+    def __next__(self):
         """
         Allow to get the next data
         """

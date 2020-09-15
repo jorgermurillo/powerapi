@@ -64,7 +64,7 @@ class IterDB:
         """
         raise NotImplementedError()
 
-    def __next__(self) -> Report:
+    def __next__(self):
         """
         """
         raise NotImplementedError()

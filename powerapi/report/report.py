@@ -27,7 +27,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from __future__ import annotations
+
 
 from datetime import datetime
 from typing import Dict
@@ -75,7 +75,7 @@ class Report(Message):
         return self.__dict__
 
     @staticmethod
-    def deserialize(data: Dict) -> Report:
+    def deserialize(data: Dict):
         """
         Generate a report using the given data.
 

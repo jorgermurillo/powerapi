@@ -72,7 +72,7 @@ class MongoIterDB(IterDB):
             self.cursor = self.db.collection.find({})
         return self
 
-    def __next__(self) -> Report:
+    def __next__(self):
         """
         Allow to get the next data
         """

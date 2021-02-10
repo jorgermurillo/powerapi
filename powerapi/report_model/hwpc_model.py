@@ -27,7 +27,6 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import json
-from typing import Dict, List, Tuple
 from powerapi.report_model import ReportModel, CSV_HEADER_COMMON, CSV_HEADER_HWPC, BadInputData
 from powerapi.report import HWPCReport
 from powerapi.utils import datetime_to_timestamp, timestamp_to_datetime
@@ -52,7 +51,7 @@ class HWPCModel(ReportModel):
         report.pop('_id', None)
         return report
 
-    def from_mongodb(self, json) -> Dict:
+    def from_mongodb(self, json):
         """
         Get HWPCReport from a MongoDB database.
 
@@ -79,13 +78,13 @@ class HWPCModel(ReportModel):
 
         return json
 
-    def to_mongodb(self, serialized_report) -> Dict:
+    def to_mongodb(self, serialized_report):
         """
         :param serialized_report: Serialized report
         """
         return serialized_report
 
-    def from_csvdb(self, file_name, row) -> Dict:
+    def from_csvdb(self, file_name, row):
         """
         Get HWPCReport from a few csv files.
         """
@@ -120,7 +119,7 @@ class HWPCModel(ReportModel):
 
         return final_dict
 
-    def to_csvdb(self, serialized_report) -> Tuple[List[str], Dict]:
+    def to_csvdb(self, serialized_report):
         """
         Return raw data from serialized report
         :return: Header, Dict(str, List(Dict))

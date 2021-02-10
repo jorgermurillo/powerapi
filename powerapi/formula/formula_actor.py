@@ -29,7 +29,6 @@
 
 import logging
 import re
-from typing import Dict
 
 from powerapi.actor import Actor, State, SocketInterface
 from powerapi.pusher import PusherActor
@@ -56,7 +55,7 @@ class FormulaActor(Actor):
     Formula actor abstract class.
     """
 
-    def __init__(self, name, pushers: Dict[str, PusherActor], level_logger=logging.WARNING, timeout=None):
+    def __init__(self, name, pushers, level_logger=logging.WARNING, timeout=None):
         """
         Initialize a new Formula actor.
         :param name: Actor name

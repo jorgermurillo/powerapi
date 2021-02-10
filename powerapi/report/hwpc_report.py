@@ -26,11 +26,7 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from __future__ import annotations
-
 from datetime import datetime
-from typing import Dict
 
 from powerapi.report.report import Report, DeserializationFail
 
@@ -63,7 +59,7 @@ class HWPCReport(Report):
         }
     """
 
-    def __init__(self, timestamp: datetime, sensor: str, target: str, groups: Dict[str, Dict]):
+    def __init__(self, timestamp, sensor, target, groups):
         """
         Initialize an HWPC report using the given parameters.
         :param datetime timestamp: Timestamp of the report
@@ -80,7 +76,7 @@ class HWPCReport(Report):
         return 'HWCPReport(%s, %s, %s, %s)' % (self.timestamp, self.sensor, self.target, sorted(self.groups.keys()))
 
     @staticmethod
-    def deserialize(data: Dict) -> HWPCReport:
+    def deserialize(data):
         """
         Generate a report using the given data.
         :param data: Dictionary containing the report attributes

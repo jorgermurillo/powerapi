@@ -26,8 +26,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from typing import List
 from powerapi.report_model import ReportModel
 from powerapi.report import Report
 from powerapi.utils import Error
@@ -91,7 +89,7 @@ class BaseDB:
         """
         raise NotImplementedError()
 
-    def iter(self, report_model: ReportModel, stream_mode: bool) -> IterDB:
+    def iter(self, report_model, stream_mode):
         """
         Create the iterator for get the data
         :param report_model: Object that herit from ReportModel and define
@@ -100,7 +98,7 @@ class BaseDB:
         """
         raise NotImplementedError()
 
-    def save(self, report: Report, report_model: ReportModel):
+    def save(self, report, report_model):
         """
         Allow to save a json input in the db
 
@@ -109,7 +107,7 @@ class BaseDB:
         """
         raise NotImplementedError()
 
-    def save_many(self, reports: List[Report], report_model: ReportModel):
+    def save_many(self, reports, report_model):
         """
         Allow to save a batch of data
 

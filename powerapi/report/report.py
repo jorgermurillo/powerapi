@@ -26,9 +26,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from __future__ import annotations
-
 from datetime import datetime
 from typing import Dict
 from powerapi.exception import PowerAPIException
@@ -47,7 +44,7 @@ class Report(Message):
     Report abtract class.
     """
 
-    def __init__(self, timestamp: datetime, sensor: str, target: str):
+    def __init__(self, timestamp, sensor, target):
         """
         Initialize a report using the given parameters.
         :param datetime timestamp: Timestamp
@@ -75,7 +72,7 @@ class Report(Message):
         return self.__dict__
 
     @staticmethod
-    def deserialize(data: Dict) -> Report:
+    def deserialize(data):
         """
         Generate a report using the given data.
 

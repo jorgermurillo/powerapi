@@ -32,8 +32,6 @@ try:
 except ImportError:
     logging.getLogger().info("opentsdb-py is not installed.")
 
-from typing import List
-
 from powerapi.report import PowerReport, Report
 from powerapi.report_model import ReportModel
 from powerapi.database import BaseDB, DBError
@@ -50,7 +48,7 @@ class OpenTSDB(BaseDB):
     Allow to handle an OpenTSDB database to save PowerReport.
     """
 
-    def __init__(self, host: str, port, metric_name: str):
+    def __init__(self, host, port, metric_name):
         """
         :param str host:             host of the OpenTSDB server
         :param int port:            port of the OpenTSDB server
@@ -90,7 +88,7 @@ class OpenTSDB(BaseDB):
         if not self.client.is_connected() and not self.client.is_alive():
             raise CantConnectToOpenTSDBException('connexion error')
 
-    def save(self, report: PowerReport, report_model: ReportModel):
+    def save(self, report, report_model):
         """
         Override from BaseDB
 
@@ -100,7 +98,7 @@ class OpenTSDB(BaseDB):
         self.client.send(self.metric_name, report.power, timestamp=int(report.timestamp.timestamp()),
                          host=report.target)
 
-    def save_many(self, reports: List[Report], report_model: ReportModel):
+    def save_many(self, reports, report_model):
         """
         Save a batch of data
 

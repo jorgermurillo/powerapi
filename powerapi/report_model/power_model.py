@@ -27,7 +27,6 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from typing import Dict, List, Tuple
 from powerapi.report import PowerReport
 from powerapi.report_model import ReportModel, BadInputData
 from powerapi.report_model import CSV_HEADER_POWER
@@ -68,7 +67,7 @@ class PowerModel(ReportModel):
         return ()
 
 
-    def to_influxdb(self, serialized_report) -> Dict:
+    def to_influxdb(self, serialized_report):
         """
         Return raw data from serialized report
 
@@ -106,7 +105,7 @@ class PowerModel(ReportModel):
             }
         }
 
-    def to_csvdb(self, serialized_report) -> Tuple[List[str], Dict]:
+    def to_csvdb(self, serialized_report):
         """
         Return raw data from serialized report
 
@@ -138,7 +137,7 @@ class PowerModel(ReportModel):
         final_dict = {self.get_type().__name__: [final_dict]}
         return CSV_HEADER_POWER, final_dict
 
-    def from_csvdb(self, file_name, row) -> Dict:
+    def from_csvdb(self, file_name, row):
         """
         Get the csvdb report
 
@@ -152,7 +151,7 @@ class PowerModel(ReportModel):
             }
         }
         """
-        final_dict: Dict = {}
+        final_dict = {}
 
         try:
             final_dict = {key: row[key] for key in CSV_HEADER_POWER}
@@ -167,7 +166,7 @@ class PowerModel(ReportModel):
 
         return final_dict
 
-    def to_mongodb(self, serialized_report) -> Dict:
+    def to_mongodb(self, serialized_report):
         """
         Return raw data from serialized report
 
@@ -183,7 +182,7 @@ class PowerModel(ReportModel):
         """
         return serialized_report
 
-    def from_mongodb(self, json) -> Dict:
+    def from_mongodb(self, json):
         """
         Get the mongodb report
 

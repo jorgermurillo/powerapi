@@ -33,7 +33,6 @@ try:
 except ImportError:
     logging.getLogger().info("PyMongo is not installed.")
 
-from typing import List
 from powerapi.database.base_db import BaseDB, DBError, IterDB
 from powerapi.report import Report
 from powerapi.report_model import ReportModel
@@ -74,7 +73,7 @@ class MongoIterDB(IterDB):
             self.cursor = self.db.collection.find({})
         return self
 
-    def __next__(self) -> Report:
+    def __next__(self):
         """
         Allow to get the next data
         """
@@ -96,7 +95,7 @@ class MongoDB(BaseDB):
     Allow to handle a MongoDB database in reading or writing.
     """
 
-    def __init__(self, uri: str, db_name: str, collection_name: str):
+    def __init__(self, uri, db_name, collection_name):
         """
         :param uri:             URI of the MongoDB server
 
@@ -149,13 +148,13 @@ class MongoDB(BaseDB):
 
         self.collection = self.mongo_client[self.db_name][self.collection_name]
 
-    def iter(self, report_model: ReportModel, stream_mode: bool) -> MongoIterDB:
+    def iter(self, report_model, stream_mode):
         """
         Create the iterator for get the data
         """
         return MongoIterDB(self, report_model, stream_mode)
 
-    def save(self, report: Report, report_model: ReportModel):
+    def save(self, report, report_model):
         """
         Override from BaseDB
 
@@ -164,7 +163,7 @@ class MongoDB(BaseDB):
         """
         self.collection.insert_one(report_model.to_mongodb(report.serialize()))
 
-    def save_many(self, reports: List[Report], report_model: ReportModel):
+    def save_many(self, reports, report_model):
         """
         Allow to save a batch of data
 

@@ -26,11 +26,7 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from __future__ import annotations
-
 from datetime import datetime
-from typing import Dict, List
 
 from powerapi.report import Report
 
@@ -41,7 +37,7 @@ class ControlReport(Report):
     This is useful to control external tools via a producer/consumer job queue.
     """
 
-    def __init__(self, timestamp: datetime, sensor: str, target: str, action: str, parameters: List):
+    def __init__(self, timestamp, sensor, target, action, parameters):
         """
         Initialize a Control Event report using the given parameters.
         :param timestamp: Report timestamp
@@ -58,7 +54,7 @@ class ControlReport(Report):
         return 'ControlReport(%s, %s, %s, %s, %s)' % (self.timestamp, self.sensor, self.target, self.action, self.parameters)
 
     @staticmethod
-    def deserialize(data: Dict) -> ControlReport:
+    def deserialize(data):
         """
         Generate a report using the given data.
         :param data: Dictionary containing the report attributes

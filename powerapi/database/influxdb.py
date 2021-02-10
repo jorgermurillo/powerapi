@@ -35,9 +35,6 @@ try:
 except ImportError:
     logging.getLogger().info("influx-client is not installed.")
 
-from typing import List
-
-
 from powerapi.database import BaseDB, DBError
 
 from powerapi.report import Report
@@ -100,7 +97,7 @@ class InfluxDB(BaseDB):
 
         self.client.create_database(self.db_name)
 
-    def save(self, report: Report, report_model: ReportModel):
+    def save(self, report, report_model):
         """
         Override from BaseDB
 
@@ -111,7 +108,7 @@ class InfluxDB(BaseDB):
         data = report_model.to_influxdb(report.serialize())
         self.client.write_points([data])
 
-    def save_many(self, reports: List[Report], report_model: ReportModel):
+    def save_many(self, reports, report_model):
         """
         Save a batch of data
 

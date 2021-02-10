@@ -26,9 +26,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from typing import Dict, List, Tuple
-
 from powerapi.report import Report, FormulaReport
 from powerapi.exception import PowerAPIException
 
@@ -40,13 +37,13 @@ class FormulaModel:
     to format the raw data read in different kind of database.
     """
 
-    def get_type(self) -> type:
+    def get_type(self):
         """
         Return the type of report
         """
         return FormulaReport
 
-    def from_mongodb(self, json: Dict) -> Dict:
+    def from_mongodb(self, json):
         """
         Get the mongodb report
         """
@@ -55,7 +52,7 @@ class FormulaModel:
 
         return json
 
-    def to_mongodb(self, serialized_report: Report) -> Dict:
+    def to_mongodb(self, serialized_report):
         """
         Return raw data from serialized report
         """

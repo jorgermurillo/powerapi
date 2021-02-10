@@ -30,7 +30,6 @@
 import csv
 import os
 
-from typing import List
 from powerapi.report import Report
 from powerapi.database.base_db import BaseDB, IterDB
 from powerapi.report_model.report_model import CSV_HEADER_COMMON, ReportModel
@@ -123,7 +122,7 @@ class CsvIterDB(IterDB):
         except StopIteration:
             return None
 
-    def __next__(self) -> Report:
+    def __next__(self):
         """
         Allow to get the next data
         """
@@ -249,7 +248,7 @@ class CsvDB(BaseDB):
     # Override from BaseDB #
     ########################
 
-    def iter(self, report_model: ReportModel, stream_mode: bool) -> CsvIterDB:
+    def iter(self, report_model, stream_mode):
         """
         Create the iterator for get the data
         """
@@ -263,7 +262,7 @@ class CsvDB(BaseDB):
         """
         pass
 
-    def save(self, report: Report, report_model: ReportModel):
+    def save(self, report, report_model):
         """
         Allow to save a serialized_report in the db
 
@@ -308,7 +307,7 @@ class CsvDB(BaseDB):
                     writer.writerow(value)
                     csvfile.close()
 
-    def save_many(self, reports: List[Report], report_model: ReportModel):
+    def save_many(self, reports, report_model):
         """
         Allow to save a batch of report
 

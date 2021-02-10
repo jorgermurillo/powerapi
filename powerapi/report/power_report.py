@@ -26,11 +26,7 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from __future__ import annotations
-
 from datetime import datetime
-from typing import Dict, Any
 
 from powerapi.report import Report
 
@@ -40,7 +36,7 @@ class PowerReport(Report):
     PowerReport stores the power estimation information.
     """
 
-    def __init__(self, timestamp: datetime, sensor: str, target: str, socket: int, power: float, metadata: Dict[str, Any]):
+    def __init__(self, timestamp, sensor, target, socket, power, metadata):
         """
         Initialize a Power report using the given parameters.
         :param datetime timestamp: Report timestamp
@@ -55,11 +51,11 @@ class PowerReport(Report):
         self.power = power
         self.socket = socket
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         return 'PowerReport(%s, %s, %s, %d, %f, %s)' % (self.timestamp, self.sensor, self.target, self.socket, self.power, self.metadata)
 
     @staticmethod
-    def deserialize(data: Dict) -> PowerReport:
+    def deserialize(data):
         """
         Generate a report using the given data.
         :param Dict data: Dictionary containing the report attributes

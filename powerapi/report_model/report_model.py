@@ -26,8 +26,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-from typing import Dict, List, Tuple
 from powerapi.exception import PowerAPIException
 
 
@@ -57,25 +55,25 @@ class ReportModel:
         """
         raise NotImplementedError()
 
-    def from_mongodb(self, json) -> Dict:
+    def from_mongodb(self, json):
         """
         Get the mongodb report
         """
         raise NotImplementedError()
 
-    def from_csvdb(self, file_name, row) -> Dict:
+    def from_csvdb(self, file_name, row):
         """
         Get the csvdb report
         """
         raise NotImplementedError()
 
-    def to_mongodb(self, serialized_report) -> Dict:
+    def to_mongodb(self, serialized_report):
         """
         Return raw data from serialized report
         """
         raise NotImplementedError()
 
-    def to_csvdb(self, serialized_report) -> Tuple[List[str], Dict]:
+    def to_csvdb(self, serialized_report):
         """
         Return raw data from serialized report
         """

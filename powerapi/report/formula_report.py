@@ -27,8 +27,6 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from __future__ import annotations
-
 from datetime import datetime
 from typing import Dict, Any
 
@@ -41,7 +39,7 @@ class FormulaReport(Report):
     This is useful to gather information about a running formula in order to debug or compute statistics.
     """
 
-    def __init__(self, timestamp: datetime, sensor: str, target: str, metadata: Dict[str, Any]):
+    def __init__(self, timestamp, sensor, target, metadata):
         """
         Initialize a Power report using the given parameters.
         :param timestamp: Report timestamp
@@ -56,7 +54,7 @@ class FormulaReport(Report):
         return 'FormulaReport(%s, %s, %s, %s)' % (self.timestamp, self.sensor, self.target, self.metadata)
 
     @staticmethod
-    def deserialize(data: Dict) -> FormulaReport:
+    def deserialize(data):
         """
         Generate a report using the given data.
         :param data: Dictionary containing the report attributes

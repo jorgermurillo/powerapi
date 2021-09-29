@@ -46,8 +46,6 @@ class CantConnectToInfluxDB2Exception(DBError):
     Exception raised to notify that connection to the influx database is impossible
     """
 
-
-
 class InfluxDB2(BaseDB):
     """
     InfluxDB2.0 class herited from BaseDB
@@ -108,7 +106,7 @@ class InfluxDB2(BaseDB):
         """
 
         # close connection if reloading
-        if not self.client is None:
+        if self.client is not None:
             self.client.close()
 
         self.client = InfluxDBClient(url=self.complete_url, token=self.token, org=self.org)

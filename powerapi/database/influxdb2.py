@@ -122,8 +122,8 @@ class InfluxDB2(BaseDB):
             raise CantConnectToInfluxDB2Exception('connexion error') from exn
 #       Not sure we need to keep the buckeapi object longer than this
         bucket_api = self.client.buckets_api()
-        if bucket_api.find_bucket_by_name(self.bucket) is None:
 #       If we can't find the bucket, we create it.
+        if bucket_api.find_bucket_by_name(self.bucket) is None:
             bucket_api.create_bucket(bucket_name=self.bucket, org_id=self.org_id)
 
 #       We need the org_id in order to create a bucket

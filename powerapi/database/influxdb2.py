@@ -33,7 +33,6 @@ from typing import List, Type
 try:
     from influxdb_client import InfluxDBClient
     from influxdb_client.client.write_api import SYNCHRONOUS
-
     from requests.exceptions import ConnectionError as Influx2ConnectionError
 except ImportError:
     logging.getLogger().info("influx_client is not installed.")

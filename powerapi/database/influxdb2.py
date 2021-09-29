@@ -33,7 +33,7 @@ from typing import List, Type
 try:
     from influxdb_client import InfluxDBClient
     from influxdb_client.client.write_api import SYNCHRONOUS
-    #from influxdb import InfluxDBClient
+
     from requests.exceptions import ConnectionError as Influx2ConnectionError
 except ImportError:
     logging.getLogger().info("influx_client is not installed.")
@@ -75,7 +75,7 @@ class InfluxDB2(BaseDB):
         BaseDB.__init__(self, report_type)
         self.uri = uri
         self.port = port
-        self.complete_url ="http://%s:%s" % (self.uri, str(self.port))
+        self.complete_url = "http://%s:%s" % (self.uri, str(self.port))
         self.tags = tags
 
         self.token = token
@@ -136,14 +136,14 @@ class InfluxDB2(BaseDB):
 
         :param report: Report to save
         :param report_model: ReportModel
-        """       
+        """
 
         data = self.report_type.to_influxdb(report, self.tags)
         for tag in data['tags']:
             data['tags'][tag] = str(data['tags'][tag])
 
         self.write_api.write(bucket=self.bucket, record=data)
-    
+
     def save_many(self, reports: List[Report]):
         """
         Save a batch of data
@@ -152,5 +152,5 @@ class InfluxDB2(BaseDB):
         :param report_model: ReportModel
         """
 
-        data_list = list(map(lambda r:  self.report_type.to_influxdb(r, self.tags), reports))
+        data_list = list(map(lambda r: self.report_type.to_influxdb(r, self.tags), reports))
         self.write_api.write(bucket=self.bucket, record=data_list)

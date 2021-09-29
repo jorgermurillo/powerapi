@@ -337,7 +337,8 @@ class DBActorGenerator(Generator):
             'virtiofs': lambda db_config: VirtioFSDB(db_config['model'], db_config['vm_name_regexp'], db_config['root_directory_name'],
                                                      db_config['vm_directory_name_prefix'], db_config['vm_directory_name_suffix']),
             'filedb': lambda db_config: FileDB(db_config['model'], db_config['filename']),
-            'influxdb2': lambda db_config: InfluxDB2(db_config["model"], db_config['uri'], db_config["port"] , db_config["token"], db_config["org"], db_config["bucket"], gen_tag_list(db_config))
+            'influxdb2': lambda db_config: InfluxDB2(db_config["model"], db_config['uri'], db_config["port"], db_config["token"],
+                                                     db_config["org"], db_config["bucket"], gen_tag_list(db_config))
         }
 
     def remove_model_factory(self, model_name):

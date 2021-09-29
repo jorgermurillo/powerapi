@@ -38,7 +38,7 @@ except ImportError:
     logging.getLogger().info("influx_client is not installed.")
 
 from powerapi.report import Report
-from powerapi.database import BaseDB, DBError
+from .base_db import BaseDB, DBError
 
 
 class CantConnectToInfluxDB2Exception(DBError):
@@ -47,7 +47,7 @@ class CantConnectToInfluxDB2Exception(DBError):
 
 class InfluxDB2(BaseDB):
     """
-    MongoDB class herited from BaseDB
+    InfluxDB2.0 class herited from BaseDB
 
     Allow to handle a InfluxDB database in reading or writing.
     """
@@ -95,18 +95,17 @@ class InfluxDB2(BaseDB):
         """
         Override from BaseDB.
 
-        Create the connection to the influxdb database with the current
-        configuration (hostname/port/db_name), then check if the connection has
+        Create the connection to the influxdb2.0 database with the current
+        configuration (hostname/port/org/token), then check if the connection has
         been created without failure.
 
         """
 
-        # close connection if reload
+        # close connection if reloading
         if self.client is not None:
             self.client.close()
 
         self.client = InfluxDBClient(url=self.complete_url, token=self.token, org=self.org)
-#       self.client = InfluxDBClient(host=self.uri, port=self.port, database=self.db_name)
 #       retrieve the org_id
         org_api = self.client.organizations_api()
 

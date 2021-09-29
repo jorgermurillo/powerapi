@@ -42,7 +42,10 @@ from .base_db import BaseDB, DBError
 
 
 class CantConnectToInfluxDB2Exception(DBError):
-    pass
+    """
+    Exception raised to notify that connection to the influx database is impossible
+    """
+
 
 
 class InfluxDB2(BaseDB):
@@ -92,7 +95,7 @@ class InfluxDB2(BaseDB):
         if hasattr(self.client, 'health'):
             self.client.health()
         else:
-            self.client.request(url="ping", method='GET', expected_response_code=204)
+            self.client.request(url="health", method='GET', expected_response_code=200)
 
     def connect(self):
         """
@@ -105,7 +108,7 @@ class InfluxDB2(BaseDB):
         """
 
         # close connection if reloading
-        if self.client is not None:
+        if not self.client is None:
             self.client.close()
 
         self.client = InfluxDBClient(url=self.complete_url, token=self.token, org=self.org)

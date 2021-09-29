@@ -46,6 +46,7 @@ class CantConnectToInfluxDB2Exception(DBError):
     Exception raised to notify that connection to the influx database is impossible
     """
 
+
 class InfluxDB2(BaseDB):
     """
     InfluxDB2.0 class herited from BaseDB

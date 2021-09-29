@@ -60,11 +60,11 @@ class InfluxDB2(BaseDB):
         :param str db_name:         database name in the influxdb
                                     (ex: "powerapi")
 
-        :param str token            access token Needed to connect to the influxdb instance
+        :param str token:           access token Needed to connect to the influxdb instance
 
-        :param str org              org that holds the data (??)
+        :param str org:             org that holds the data (??)
 
-        :param str bucket           bucket where the data is going to be stored
+        :param str bucket:          bucket where the data is going to be stored
 
         :param report_model:        XXXModel object. Allow to read specific
                                     report with a specific format in a database
@@ -84,6 +84,9 @@ class InfluxDB2(BaseDB):
 
         self.client = None
         self.write_api = None
+
+    def __iter__(self):
+        raise NotImplementedError()
 
     def _ping_client(self):
         if hasattr(self.client, 'health'):
